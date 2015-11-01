@@ -25,10 +25,12 @@ angular.module('app').directive('plUserInfoCard', function(){
   return {
     templateUrl: 'scripts/user-info-card/user-info-card.html',
     restrict: 'E',
-    scope: true,
-    // with inherited scope, directive and parent controller need different
-    // controllerAs alias
-    controllerAs: 'card',
+    scope: {
+      user: '='
+    },
+    controllerAs: 'vm',
+    // if you use constrollerAs with isolated scope, must have bindToController
+    bindToController: true,
     controller: function($scope) {
       this.knightMe = function (user) {
         user.rank = 'knight';
