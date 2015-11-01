@@ -13,6 +13,16 @@
       <li ng-repeat="friend in vm.user.friends">{{friend}}</li>
     </ul>
 
+    <div ng-show="!!vm.user.rank">
+      Rank: {{vm.user.rank}}
+    </div>
+
+    <button
+      class="btn btn-success"
+      ng-show="!vm.user.rank"
+      ng-click="card.knightMe(vm.user)">
+      Knight Me
+    </button>
   </div>
 </div>
 
