@@ -19,7 +19,7 @@ angular.module('app').controller('mainCtrl', function($scope){
   }
 })
 
-angular.module('app').directive('userInfoCard', function(){
+angular.module('app').directive('plUserInfoCard', function(){
   return {
     templateUrl: 'scripts/user-info-card/index.html',
     restrict: 'E'
