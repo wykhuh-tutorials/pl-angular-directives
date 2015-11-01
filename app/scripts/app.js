@@ -4,7 +4,7 @@ angular
   .module('app', []);
 
 angular.module('app').controller('mainCtrl', function($scope){
-  this.user = {
+  this.user1 = {
     name: 'Luke Skywalker',
     address: {
       street: '555 Main',
@@ -13,6 +13,20 @@ angular.module('app').controller('mainCtrl', function($scope){
     },
     friends: [
       'Han',
+      'Leia',
+      'C3PO'
+    ]
+  }
+
+  this.user2 = {
+    name: 'Han Solo',
+    address: {
+      street: '555 Main',
+      city: 'Mos Eisley',
+      planet: 'Tattoine'
+    },
+    friends: [
+      'Luke',
       'Leia',
       'C3PO'
     ]
