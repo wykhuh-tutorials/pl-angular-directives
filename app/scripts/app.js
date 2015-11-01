@@ -4,7 +4,7 @@ angular
   .module('app', []);
 
 angular.module('app').controller('mainCtrl', function($scope){
-  $scope.user = {
+  this.user = {
     name: 'Jane Doe',
     address: {
       street: '555 Main',
