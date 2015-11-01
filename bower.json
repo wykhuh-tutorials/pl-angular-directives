@@ -9,7 +9,7 @@
     "angular-mocks": "^1.4.0"
   },
   "appPath": "app",
-  "moduleName": "angularDirectivesApp",
+  "moduleName": "app",
   "overrides": {
     "bootstrap": {
       "main": [
