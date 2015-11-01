@@ -22,6 +22,7 @@ angular.module('app').controller('mainCtrl', function($scope){
 angular.module('app').directive('userInfoCard', function(){
   return {
     templateUrl: 'scripts/user-info-card/index.html',
-    restrict: 'E'
+    restrict: 'E',
+    replace: true
   }
 })
