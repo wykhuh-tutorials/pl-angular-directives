@@ -25,7 +25,8 @@ angular.module('app').directive('plUserInfoCard', function(){
   return {
     templateUrl: 'scripts/user-info-card/user-info-card.html',
     restrict: 'E',
-    // with shared scope, directive and parent controller need different
+    scope: true,
+    // with inherited scope, directive and parent controller need different
     // controllerAs alias
     controllerAs: 'card',
     controller: function($scope) {
