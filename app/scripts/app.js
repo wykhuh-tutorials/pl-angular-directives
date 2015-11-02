@@ -40,7 +40,9 @@ angular.module('app').directive('plUserInfoCard', function(){
     restrict: 'E',
     scope: {
       user: '=', // object
-      initialCollapsed: '@' // string value
+      // in the html, use collapsed
+      // in the controller, use initial collapse
+      initialCollapsed: '@collapsed' // string value
     },
     controller: function($scope) {
 
