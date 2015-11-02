@@ -7,11 +7,7 @@
     <ul>
       <li ng-repeat="friend in user.friends">
         {{friend}}
-        <span class="glyphicon glyphicon-remove" style="cursor:pointer" ng-click="startRemove()" ng-hide="removing"></span>
-        <span ng-show="removing">
-          <button class="btn btn-xs btn-success" ng-click="removeFriend(friend)">Remove</button>
-          <button class="btn btn-xs btn-danger" ng-click="cancelRemove()">Never Mind</button>
-        </span>
+        <pl-remove-friend></pl-remove-friend>
       </li>
     </ul>
 

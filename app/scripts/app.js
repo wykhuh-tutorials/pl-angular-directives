@@ -56,10 +56,16 @@ angular.module('app').directive('plUserInfoCard', function(){
         $scope.collapsed = !$scope.collapsed;
       };
 
-      // remove friends
-      // bug - all the friends share the same removing variable.
-      // when you click on remove for one friend, removing is set
-      // to true for all friends.
+      console.log($scope)
+    }
+  }
+})
+
+angular.module('app').directive('plRemoveFriend', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'scripts/user-info-card/remove-friend.html',
+    controller: function($scope) {
       $scope.removing = false;
 
       $scope.startRemove = function() {
@@ -70,17 +76,19 @@ angular.module('app').directive('plUserInfoCard', function(){
         $scope.removing = false;
       };
 
+      // problem with this code is that this method is reaching up to the
+      // scope.user.friends collection.
+      // this directive should only act one friend. it shoud not act on the user
+      // object.
       $scope.removeFriend = function(friend) {
         var idx = $scope.user.friends.indexOf(friend);
         if (idx > -1) {
           $scope.user.friends.splice(idx, 1)
         }
       };
-
-      console.log($scope)
     }
   }
-})
+});
 
 
 // inherited scope.
