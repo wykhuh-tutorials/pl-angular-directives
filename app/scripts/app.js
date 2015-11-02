@@ -39,11 +39,12 @@ angular.module('app').directive('plUserInfoCard', function(){
     templateUrl: 'scripts/user-info-card/user-info-card.html',
     restrict: 'E',
     scope: {
-      user: '='
+      user: '=', // object
+      initialCollapsed: '@' // string value
     },
     controller: function($scope) {
 
-      $scope.collapsed = false;
+      $scope.collapsed = ($scope.initialCollapsed === 'true');
 
       $scope.knightMe = function (user) {
         user.rank = 'knight';
