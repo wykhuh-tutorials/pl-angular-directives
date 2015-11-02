@@ -58,13 +58,22 @@ angular.module('app').directive('plUserInfoCard', function(){
   }
 })
 
-// when Address share same scope as UserInfoCard,
-// collapsing address collapses the whole card.
-// card collapse is same variable as address collapse.
+
+// inherited scope.
+
+// Address inherits all the objects on Card $scope.
+// Address doesn't have a user object, but it can go up the inheritance chain
+// and access user on the Card scope.
+
+// Address and UserInfoCard have different scope
+// if both Address and Card have object of same name, Address overwrites Card variable.
+// Address collapsed overwrites Card collapsed because of js inheritance.
+
 angular.module('app').directive('plAddress', function(){
   return {
     restrict: 'E',
     templateUrl: 'scripts/user-info-card/address.html',
+    scope: true,
     controller: function($scope) {
       $scope.collapsed = false;
 
