@@ -7,7 +7,7 @@
     <ul>
       <li ng-repeat="friend in user.friends">
         {{friend}}
-        <pl-remove-friend></pl-remove-friend>
+        <pl-remove-friend method="removeFriend(friend)"></pl-remove-friend>
       </li>
     </ul>
 

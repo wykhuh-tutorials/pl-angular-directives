@@ -56,6 +56,15 @@ angular.module('app').directive('plUserInfoCard', function(){
         $scope.collapsed = !$scope.collapsed;
       };
 
+      // user is on the card scope, there card is responsible for knowing how to
+      // remove  a friend from the friends collection
+      $scope.removeFriend = function(friend) {
+        var idx = $scope.user.friends.indexOf(friend);
+        if (idx > -1) {
+          $scope.user.friends.splice(idx, 1)
+        }
+      };
+
       console.log($scope)
     }
   }
@@ -65,6 +74,9 @@ angular.module('app').directive('plRemoveFriend', function() {
   return {
     restrict: 'E',
     templateUrl: 'scripts/user-info-card/remove-friend.html',
+    scope: {
+      notifyParent: '&method'
+    },
     controller: function($scope) {
       $scope.removing = false;
 
@@ -76,16 +88,20 @@ angular.module('app').directive('plRemoveFriend', function() {
         $scope.removing = false;
       };
 
-      // problem with this code is that this method is reaching up to the
-      // scope.user.friends collection.
+      // remove-friend notifies the parent card directive which friend the user
+      // wants to remove.
+
+      // remove-friend isn't responsible for removing a friend from the colleciton
+      // because it is involved with one friend, not the entire collection.
+
       // this directive should only act one friend. it shoud not act on the user
-      // object.
-      $scope.removeFriend = function(friend) {
-        var idx = $scope.user.friends.indexOf(friend);
-        if (idx > -1) {
-          $scope.user.friends.splice(idx, 1)
-        }
-      };
+      // object
+
+      // when confirmRemove is executes, it executes the function pased into
+      // notifyParent/method.  in the html: method="removeFriend(friend)"
+      $scope.confirmRemove = function () {
+        $scope.notifyParent();
+      }
     }
   }
 });
