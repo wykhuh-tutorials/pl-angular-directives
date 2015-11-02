@@ -31,7 +31,6 @@ angular.module('app').controller('mainCtrl', function($scope){
       'C3PO'
     ]
   }
-  console.log('parent scope', $scope.$id);
 })
 
 angular.module('app').directive('plUserInfoCard', function(){
@@ -46,11 +45,17 @@ angular.module('app').directive('plUserInfoCard', function(){
     // if you use constrollerAs with isolated scope, must have bindToController
     bindToController: true,
     controller: function($scope) {
+      var vm = this;
+
+      this.collapsed = false;
+
       this.knightMe = function (user) {
         user.rank = 'knight';
       }
 
-      console.log('directive scope', $scope.$id);
+      this.collapse = function() {
+        vm.collapsed = !vm.collapsed;
+      };
     }
   }
 })
