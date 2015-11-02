@@ -45,7 +45,7 @@ angular.module('app').directive('plUserInfoCard', function(){
       initialCollapsed: '@collapsed' // string value
     },
     controller: function($scope) {
-
+      // collapse card
       $scope.collapsed = ($scope.initialCollapsed === 'true');
 
       $scope.knightMe = function (user) {
@@ -54,6 +54,27 @@ angular.module('app').directive('plUserInfoCard', function(){
 
       $scope.collapse = function() {
         $scope.collapsed = !$scope.collapsed;
+      };
+
+      // remove friends
+      // bug - all the friends share the same removing variable.
+      // when you click on remove for one friend, removing is set
+      // to true for all friends.
+      $scope.removing = false;
+
+      $scope.startRemove = function() {
+        $scope.removing = true;
+      };
+
+      $scope.cancelRemove = function() {
+        $scope.removing = false;
+      };
+
+      $scope.removeFriend = function(friend) {
+        var idx = $scope.user.friends.indexOf(friend);
+        if (idx > -1) {
+          $scope.user.friends.splice(idx, 1)
+        }
       };
 
       console.log($scope)
