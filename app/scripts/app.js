@@ -4,7 +4,7 @@ angular
   .module('app', []);
 
 angular.module('app').controller('mainCtrl', function($scope){
-  this.user1 = {
+  $scope.user1 = {
     name: 'Luke Skywalker',
     address: {
       street: '555 Main',
@@ -18,7 +18,7 @@ angular.module('app').controller('mainCtrl', function($scope){
     ]
   }
 
-  this.user2 = {
+  $scope.user2 = {
     name: 'Han Solo',
     address: {
       street: '555 Main',
@@ -41,24 +41,43 @@ angular.module('app').directive('plUserInfoCard', function(){
     scope: {
       user: '='
     },
-    controllerAs: 'vm',
-    // if you use constrollerAs with isolated scope, must have bindToController
-    bindToController: true,
     controller: function($scope) {
-      var vm = this;
 
-      this.collapsed = false;
+      $scope.collapsed = false;
 
-      this.knightMe = function (user) {
+      $scope.knightMe = function (user) {
         user.rank = 'knight';
       }
 
-      this.collapse = function() {
-        vm.collapsed = !vm.collapsed;
+      $scope.collapse = function() {
+        $scope.collapsed = !$scope.collapsed;
       };
+
+      console.log($scope)
     }
   }
 })
 
+// when Address share same scope as UserInfoCard,
+// collapsing address collapses the whole card.
+// card collapse is same variable as address collapse.
+angular.module('app').directive('plAddress', function(){
+  return {
+    restrict: 'E',
+    templateUrl: 'scripts/user-info-card/address.html',
+    controller: function($scope) {
+      $scope.collapsed = false;
 
+      $scope.collapseAddress = function() {
+        $scope.collapsed = true;
+      }
+
+      $scope.expandAddress = function() {
+        $scope.collapsed = false;
+      }
+
+      console.log($scope)
+    }
+  }
+})
 
