@@ -100,7 +100,12 @@ angular.module('app').directive('plRemoveFriend', function() {
       // when confirmRemove is executes, it executes the function pased into
       // notifyParent/method.  in the html: method="removeFriend(friend)"
       $scope.confirmRemove = function () {
-        $scope.notifyParent();
+        // by passing an object into notifiyParent, we can override the parameters
+        // passed into the parameter.
+
+        // html: <pl-remove-friend method="removeFriend(friend)">
+        // instead of removing current friend, we will remove Han
+        $scope.notifyParent({friend: 'Han'});
       }
     }
   }
