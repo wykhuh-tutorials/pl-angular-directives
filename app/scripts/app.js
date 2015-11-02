@@ -105,7 +105,8 @@ angular.module('app').directive('plRemoveFriend', function() {
 
         // html: <pl-remove-friend method="removeFriend(friend)">
         // instead of removing current friend, we will remove Han
-        $scope.notifyParent({friend: 'Han'});
+        // $scope.notifyParent({friend: 'Han'});
+        $scope.notifyParent();
       }
     }
   }
