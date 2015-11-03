@@ -4,6 +4,10 @@ angular
   .module('app', []);
 
 angular.module('app').controller('mainCtrl', function($scope){
+  $scope.handlePause = function() {
+    console.log('video was paused!');
+  }
+
 })
 
 angular.module('app').directive('spacebarSupport', function(){
@@ -24,6 +28,28 @@ angular.module('app').directive('spacebarSupport', function(){
             vidEl.pause();
           }
         }
+      })
+    }
+  }
+})
+
+// event-pause="handlePause()"
+// when pause event occurs on <video>, execute the eventPause(),
+// which will execute handlePause() on the parent
+angular.module('app').directive('eventPause', function() {
+  return {
+    restrict: 'A',
+    scope: {
+      eventPause: '&'
+    },
+    // use link to add a listener for the pause event
+    link: function(scope, el, attrs) {
+      el.on('pause', function(event){
+        // the pause event occurs outside of Angular's digest cycle.
+        // need to start a new digest cycle because an external event happened.
+        scope.$apply(function() {
+          scope.eventPause();
+        })
       })
     }
   }
