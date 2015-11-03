@@ -4,8 +4,15 @@ angular
   .module('app', []);
 
 angular.module('app').controller('mainCtrl', function($scope){
+  $scope.messages = [];
+
   $scope.handlePause = function() {
     console.log('video was paused!');
+    // push object into array instead of a string.
+    // ng-repeat does not support an array whose items are identical using ===.
+    // strings with identical text are idenitcal.
+    // objects that contain the identical content are not identical.
+    $scope.messages.push({text: 'pause!'});
   }
 
 })
@@ -39,6 +46,11 @@ angular.module('app').directive('spacebarSupport', function(){
 angular.module('app').directive('eventPause', function() {
   return {
     restrict: 'A',
+    // when you use an isolated scope on an element, that affects the other
+    // directives on the element. Isolated scope might break other directives
+    // that rely on data from a parent element.
+    // if there are two directors with isolated scope on the same element, the
+    // app will break.
     scope: {
       eventPause: '&'
     },
