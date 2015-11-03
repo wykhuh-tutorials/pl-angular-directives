@@ -7,7 +7,7 @@ angular.module('app').controller('mainCtrl', function($scope){
 
 })
 
-angular.module('app').directive('plDemo', function(){
+angular.module('app').directive('demo', function(){
   return {
     template: 'Demo'
   }
