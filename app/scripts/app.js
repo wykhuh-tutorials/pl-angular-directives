@@ -6,8 +6,8 @@ angular
 angular.module('app').controller('mainCtrl', function($scope){
   $scope.messages = [];
 
-  $scope.handlePause = function() {
-    console.log('video was paused!');
+  $scope.handlePause = function(e) {
+    console.log('video was paused!', e);
     // push object into array instead of a string.
     // ng-repeat does not support an array whose items are identical using ===.
     // strings with identical text are idenitcal.
@@ -40,27 +40,25 @@ angular.module('app').directive('spacebarSupport', function(){
   }
 })
 
-// event-pause="handlePause()"
+// event-pause="handlePause(evt)"
 // when pause event occurs on <video>, execute the eventPause(),
 // which will execute handlePause() on the parent
-angular.module('app').directive('eventPause', function() {
+angular.module('app').directive('eventPause', function($parse) {
   return {
     restrict: 'A',
-    // when you use an isolated scope on an element, that affects the other
-    // directives on the element. Isolated scope might break other directives
-    // that rely on data from a parent element.
-    // if there are two directors with isolated scope on the same element, the
-    // app will break.
-    scope: {
-      eventPause: '&'
-    },
     // use link to add a listener for the pause event
     link: function(scope, el, attrs) {
+      // attrs['eventPause'] returns the string "handlePause()"
+      // $parse(attrs['eventPause']) - angular looks for handlePause function in
+      // the scope and returns the function
+      var fn = $parse(attrs['eventPause']);
       el.on('pause', function(event){
         // the pause event occurs outside of Angular's digest cycle.
         // need to start a new digest cycle because an external event happened.
         scope.$apply(function() {
-          scope.eventPause();
+          // pass in object {evt: event} so we can pass in parametes to the
+          // handlePause()
+          fn(scope, {evt: event})
         })
       })
     }
