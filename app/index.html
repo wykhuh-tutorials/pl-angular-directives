@@ -6,11 +6,13 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="./styles/main.css">
   </head>
-  <body ng-app="app" ng-controller="mainCtrl as vm" class="container">
+  <body ng-app="app" ng-controller="mainCtrl" class="container" style="padding-top:30px">
 
     <h1>Directives</h1>
 
-    <pl-demo></pl-demo>
+    <video id="vid" controls preload="none" poster="http://media.w3.org/2010/05/sintel/poster.png" >
+      <source src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4"></source>
+    </video>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
