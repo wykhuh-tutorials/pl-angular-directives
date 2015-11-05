@@ -4,11 +4,17 @@ angular
   .module('app', []);
 
 angular.module('app').controller('mainCtrl', function($scope){
-
-})
-
-angular.module('app').directive('demo', function(){
-  return {
-    template: 'Demo'
+  $scope.user1 = {
+    name: 'Jane'
   }
-})
+});
+
+angular.module('app').directive('userTile', function(){
+  return {
+    restrict: 'E',
+    scope: {
+      user: '='
+    },
+    templateUrl: 'userTile.html'
+  };
+});
